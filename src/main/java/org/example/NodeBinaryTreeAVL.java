@@ -34,11 +34,11 @@ public class NodeBinaryTreeAVL {
         this.sonLeftNodeBinaryTreeAVL = sonLeftNodeBinaryTreeAVL;
     }
 
-    public NodeBinaryTreeAVL getSonrRightNodeBinaryTreeAVL() {
+    public NodeBinaryTreeAVL getSonRightNodeBinaryTreeAVL() {
         return sonrRightNodeBinaryTreeAVL;
     }
 
-    public void setSonrRightNodeBinaryTreeAVL(NodeBinaryTreeAVL sonrRightNodeBinaryTreeAVL) {
+    public void setSoNRightNodeBinaryTreeAVL(NodeBinaryTreeAVL sonrRightNodeBinaryTreeAVL) {
         this.sonrRightNodeBinaryTreeAVL = sonrRightNodeBinaryTreeAVL;
     }
 }
