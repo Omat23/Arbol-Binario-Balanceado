@@ -128,4 +128,42 @@ public class BinaryTreeAVL {
         fatherNode = rotationLeft(auxNode);
         return fatherNode;
     }
+
+    public void showTreeInOrder(NodeBinaryTreeAVL auxNode){
+        if(auxNode != null){
+            showTreeInOrder(auxNode.getSonLeftNodeBinaryTreeAVL());
+            System.out.print(auxNode.getDataBinaryTreeAVL() + ", ");
+            showTreeInOrder(auxNode.getSonRightNodeBinaryTreeAVL());
+        }
+    }
+
+    public void showTreePreOrder(NodeBinaryTreeAVL auxNode){
+        if(auxNode != null){
+            System.out.print(auxNode.getDataBinaryTreeAVL() + ", ");
+            showTreePreOrder(auxNode.getSonLeftNodeBinaryTreeAVL());
+            showTreePreOrder(auxNode.getSonRightNodeBinaryTreeAVL());
+        }
+    }
+
+    public void showTreePostOrder(NodeBinaryTreeAVL auxNode){
+        if(auxNode != null){
+            showTreePostOrder(auxNode.getSonLeftNodeBinaryTreeAVL());
+            showTreePostOrder(auxNode.getSonRightNodeBinaryTreeAVL());
+            System.out.print(auxNode.getDataBinaryTreeAVL() + ", ");
+        }
+    }
+
+    public NodeBinaryTreeAVL showSpecificElement(int elementToSearch, NodeBinaryTreeAVL auxNode){
+        if(auxNode == null){
+            return null;
+        }else{
+            if(elementToSearch == auxNode.getDataBinaryTreeAVL()){
+                return auxNode;
+            }else if(elementToSearch < auxNode.getDataBinaryTreeAVL()){
+                return showSpecificElement(elementToSearch, auxNode.getSonLeftNodeBinaryTreeAVL());
+            }else{
+                return showSpecificElement(elementToSearch, auxNode.getSonRightNodeBinaryTreeAVL());
+            }
+        }
+    }
 }
