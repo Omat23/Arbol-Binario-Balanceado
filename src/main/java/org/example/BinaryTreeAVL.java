@@ -166,4 +166,8 @@ public class BinaryTreeAVL {
             }
         }
     }
+
+    public NodeBinaryTreeAVL getRootNodeBinaryTreeAVL(){
+        return this.rootNodeBinaryTreeAVL;
+    }
 }
