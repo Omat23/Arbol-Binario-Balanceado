@@ -117,15 +117,15 @@ public class BinaryTreeAVL {
 
     public NodeBinaryTreeAVL rotationDoubleRight(NodeBinaryTreeAVL auxNode){
         NodeBinaryTreeAVL fatherNode;
-        auxNode.setSonLeftNodeBinaryTreeAVL(rotationLeft(auxNode.getSonLeftNodeBinaryTreeAVL()));
-        fatherNode = rotationRight(auxNode);
+        auxNode.setSonLeftNodeBinaryTreeAVL(rotationRight(auxNode.getSonLeftNodeBinaryTreeAVL()));
+        fatherNode = rotationLeft(auxNode);
         return fatherNode;
     }
 
     public NodeBinaryTreeAVL rotationDoubleLeft(NodeBinaryTreeAVL auxNode){
         NodeBinaryTreeAVL fatherNode;
-        auxNode.setSonRightNodeBinaryTreeAVL(rotationRight(auxNode.getSonRightNodeBinaryTreeAVL()));
-        fatherNode = rotationLeft(auxNode);
+        auxNode.setSonRightNodeBinaryTreeAVL(rotationLeft(auxNode.getSonRightNodeBinaryTreeAVL()));
+        fatherNode = rotationRight(auxNode);
         return fatherNode;
     }
 

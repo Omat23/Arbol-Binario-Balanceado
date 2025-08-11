@@ -30,12 +30,15 @@ public class MenuBinaryTreeAVL {
                         break;
 
                 case 2: this.binaryTreeAVL.showTreeInOrder(this.binaryTreeAVL.getRootNodeBinaryTreeAVL());
+                        System.out.println();
                         break;
 
                 case 3: this.binaryTreeAVL.showTreePreOrder(this.binaryTreeAVL.getRootNodeBinaryTreeAVL());
+                        System.out.println();
                         break;
 
                 case 4: this.binaryTreeAVL.showTreePostOrder(this.binaryTreeAVL.getRootNodeBinaryTreeAVL());
+                        System.out.println();
                         break;
 
                 case 5: this.binaryTreeAVL.showSpecificElement(Integer.parseInt(JOptionPane.showInputDialog("Enter the element to search")),
