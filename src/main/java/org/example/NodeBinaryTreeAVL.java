@@ -38,7 +38,7 @@ public class NodeBinaryTreeAVL {
         return sonrRightNodeBinaryTreeAVL;
     }
 
-    public void setSoNRightNodeBinaryTreeAVL(NodeBinaryTreeAVL sonrRightNodeBinaryTreeAVL) {
+    public void setSonRightNodeBinaryTreeAVL(NodeBinaryTreeAVL sonrRightNodeBinaryTreeAVL) {
         this.sonrRightNodeBinaryTreeAVL = sonrRightNodeBinaryTreeAVL;
     }
 }
