@@ -167,6 +167,80 @@ public class BinaryTreeAVL {
         }
     }
 
+    public void deleteSpecificNode(){
+        int elementToDelete = Integer.parseInt(JOptionPane.showInputDialog("Enter the element to delete"));
+        this.rootNodeBinaryTreeAVL = deleteSpecificNode(elementToDelete, this.rootNodeBinaryTreeAVL);
+    }
+
+    public NodeBinaryTreeAVL deleteSpecificNode(int elementToDelete, NodeBinaryTreeAVL auxNodeBinaryTreeAVL){
+        //1er Paso: Recorrer el árbol hasta encontrar el nodo a eliminar
+        if(auxNodeBinaryTreeAVL != null){
+            //Caso 1: Mi elemento a eliminar es menor al dato de mi auxNode, por lo tanto, se recorre a la izquierda.
+            if(elementToDelete < auxNodeBinaryTreeAVL.getDataBinaryTreeAVL()){
+                auxNodeBinaryTreeAVL.setSonLeftNodeBinaryTreeAVL(deleteSpecificNode(elementToDelete, auxNodeBinaryTreeAVL.getSonLeftNodeBinaryTreeAVL()));
+                //Caso 2: Mi elemento a eliminar es mayor al dato de mi auxNode, por lo tanto, se recorre a la derecha.
+            }else if(elementToDelete > auxNodeBinaryTreeAVL.getDataBinaryTreeAVL()){
+                auxNodeBinaryTreeAVL.setSonRightNodeBinaryTreeAVL(deleteSpecificNode(elementToDelete, auxNodeBinaryTreeAVL.getSonRightNodeBinaryTreeAVL()));
+            }else{
+        //2do Paso: Eliminar el nodo de mi arbol.
+
+                /*Caso contrario, si no es menor ni mayor significa que el dato de mi auxNode es igual al elemento a eliminar, por lo tanto,
+                    hemos encontrado el dato.
+                 */
+
+                //1er y 2do Caso: Mi nodo a eliminar NO tiene hijos o tiene UNICAMENTE UN HIJO
+                if(auxNodeBinaryTreeAVL.getSonLeftNodeBinaryTreeAVL() == null || auxNodeBinaryTreeAVL.getSonRightNodeBinaryTreeAVL() == null){
+                    NodeBinaryTreeAVL temporalNode = (auxNodeBinaryTreeAVL.getSonLeftNodeBinaryTreeAVL() != null) ? auxNodeBinaryTreeAVL.getSonLeftNodeBinaryTreeAVL()
+                                                        : auxNodeBinaryTreeAVL.getSonRightNodeBinaryTreeAVL();
+                    //Si mi nodo NO tiene hijos
+                    if(temporalNode == null) {
+                        auxNodeBinaryTreeAVL = null;
+                    //Caso contrario, significa que tiene un hijo
+                    }else{
+                        auxNodeBinaryTreeAVL = temporalNode;
+                    }
+                //3er Caso: Mi nodo a eliminar TENGA DOS HIJOS
+                }else{
+                    NodeBinaryTreeAVL temporalNode = getMiniumValueNode(auxNodeBinaryTreeAVL.getSonRightNodeBinaryTreeAVL());
+                    auxNodeBinaryTreeAVL.setDataBinaryTreeAVL(temporalNode.getDataBinaryTreeAVL());
+                    auxNodeBinaryTreeAVL.setSonRightNodeBinaryTreeAVL(deleteSpecificNode(temporalNode.getDataBinaryTreeAVL(), auxNodeBinaryTreeAVL.getSonRightNodeBinaryTreeAVL()));
+                }
+            }
+
+            //Actualizamos la altura de nuestro auxNode.
+            if(auxNodeBinaryTreeAVL != null){
+                auxNodeBinaryTreeAVL.setFrequencyBalanceNodeBinaryTreeAVL(Math.max(getBalanceNode(auxNodeBinaryTreeAVL.getSonLeftNodeBinaryTreeAVL()),
+                                                                            getBalanceNode(auxNodeBinaryTreeAVL.getSonRightNodeBinaryTreeAVL())) + 1);
+
+            //Calculamos el balance de nuestro auxNode para verificar si es necesario hacer una rotacion o no
+                int balanceNode = getBalanceNode(auxNodeBinaryTreeAVL.getSonRightNodeBinaryTreeAVL()) - getBalanceNode(auxNodeBinaryTreeAVL.getSonLeftNodeBinaryTreeAVL());
+                return getRotations(auxNodeBinaryTreeAVL, balanceNode, auxNodeBinaryTreeAVL.getSonLeftNodeBinaryTreeAVL(), auxNodeBinaryTreeAVL.getSonRightNodeBinaryTreeAVL());
+            }
+            return auxNodeBinaryTreeAVL;
+        }
+        return null;
+    }
+
+    public NodeBinaryTreeAVL getMiniumValueNode(NodeBinaryTreeAVL auxNode){
+        NodeBinaryTreeAVL boxNode = auxNode;
+        while(boxNode.getSonLeftNodeBinaryTreeAVL() != null){
+            boxNode = boxNode.getSonLeftNodeBinaryTreeAVL();
+        }
+        return boxNode;
+    }
+
+    public NodeBinaryTreeAVL getRotations(NodeBinaryTreeAVL auxNode, int balanceNode, NodeBinaryTreeAVL sonLeft, NodeBinaryTreeAVL sonRight){
+        if(balanceNode == 2 && getBalanceNode(sonLeft) > getBalanceNode(sonRight)){
+            return rotationRight(auxNode);
+        }else if(balanceNode == 2 && getBalanceNode(sonLeft) >= getBalanceNode(sonRight)){
+            return rotationDoubleRight(auxNode);
+        } else if(balanceNode == 2 && getBalanceNode(sonLeft) < getBalanceNode(sonRight)){
+            return rotationLeft(auxNode);
+        }else{
+            return rotationDoubleLeft(auxNode);
+        }
+    }
+
     public NodeBinaryTreeAVL getRootNodeBinaryTreeAVL(){
         return this.rootNodeBinaryTreeAVL;
     }

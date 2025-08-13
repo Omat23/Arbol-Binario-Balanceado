@@ -18,6 +18,10 @@ public class NodeBinaryTreeAVL {
         return dataBinaryTreeAVL;
     }
 
+    public void setDataBinaryTreeAVL(int dataBinaryTreeAVL){
+        this.dataBinaryTreeAVL = dataBinaryTreeAVL;
+    }
+
     public int getFrequencyBalanceNodeBinaryTreeAVL() {
         return frequencyBalanceNodeBinaryTreeAVL;
     }
