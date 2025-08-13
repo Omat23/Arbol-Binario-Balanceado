@@ -16,14 +16,15 @@ public class MenuBinaryTreeAVL {
                                                             2.- Show Elements In Order
                                                             3.- Show Elements Pre Order
                                                             4.- Show Elements Post Order
-                                                            5.- Show Specific Elements
+                                                            5.- Show Specific Element
+                                                            6.- Delete Specific Element
                                                             """));
     }
 
     public void executeOption(){
         int option = 0;
 
-        while(option < 6){
+        while(option < 7){
             option = chooseOption();
             switch (option){
                 case 1: this.binaryTreeAVL.addElementsWithinBinaryTreeAVL();
@@ -43,6 +44,9 @@ public class MenuBinaryTreeAVL {
 
                 case 5: this.binaryTreeAVL.showSpecificElement(Integer.parseInt(JOptionPane.showInputDialog("Enter the element to search")),
                                                                 this.binaryTreeAVL.getRootNodeBinaryTreeAVL());
+                        break;
+
+                case 6: this.binaryTreeAVL.deleteSpecificNode();
                         break;
 
                 default: JOptionPane.showMessageDialog(null, "Option Not Found");
